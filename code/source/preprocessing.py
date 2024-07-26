@@ -140,62 +140,62 @@ temp2 = []
 # X2.to_csv('preprocessed/Filled_Zero.csv')
 # X3 = impute_by_value(X1_num, method='mean')
 # X3.to_csv('preprocessed/Filled_Mean.csv')
-X4 = impute_by_imputer(X1_num, X1_cat)
-X4.to_csv('preprocessed/Filled_RF.csv')
-# for df in cat_dfs:
-#     temp_df = fill_categories(df)
-#     temp1.append(temp_df)
-# variable_actions['X3_cat'] = variable_actions['X1_cat'] + ['fill_categories']
-# variable_actions['X4_cat'] = variable_actions['X2_cat'] + ['fill_categories']
-#
-# for i, df in enumerate(num_dfs):
-#     temp_df = fill_numeric(df, cat_dfs[i])
-#     temp2.append(temp_df)
-# variable_actions['X3_num'] = variable_actions['X1_num'] + ['fill_numeric']
-# variable_actions['X4_num'] = variable_actions['X2_num'] + ['fill_numeric']
-#
-# cat_dfs += temp1
-# num_dfs += temp2
-# temp1.clear()
-# temp2.clear()
-# # 7, 8
-# for df in num_dfs:
-#     temp_df = scale_features(df)
-#     temp2.append(temp_df)
-# variable_actions['X5_num'] = variable_actions['X1_num'] + ['scale_features']
-# variable_actions['X6_num'] = variable_actions['X2_num'] + ['scale_features']
-# variable_actions['X7_num'] = variable_actions['X3_num'] + ['scale_features']
-# variable_actions['X8_num'] = variable_actions['X4_num'] + ['scale_features']
-#
-# for df in cat_dfs:
-#     temp_df = encode_categories(df)
-#     temp1.append(temp_df)
-#     temp_df = remove_categories(df)
-#     temp1.append(temp_df)
-# variable_actions['X5_cat'] = variable_actions['X1_cat'] + ['encode_categories']
-# variable_actions['X6_cat'] = variable_actions['X1_cat'] + ['remove_categories']
-# variable_actions['X7_cat'] = variable_actions['X2_cat'] + ['encode_categories']
-# variable_actions['X8_cat'] = variable_actions['X2_cat'] + ['remove_categories']
-# variable_actions['X9_cat'] = variable_actions['X3_cat'] + ['encode_categories']
-# variable_actions['X10_cat'] = variable_actions['X3_cat'] + ['remove_categories']
-# variable_actions['X11_cat'] = variable_actions['X4_cat'] + ['encode_categories']
-# variable_actions['X12_cat'] = variable_actions['X4_cat'] + ['remove_categories']
-#
-# cat_dfs += temp1
-# num_dfs += temp2
-# temp1.clear()
-# temp2.clear()
+# X4 = impute_by_imputer(X1_num, X1_cat)
+# X4.to_csv('preprocessed/Filled_RF.csv')
+for df in cat_dfs:
+    temp_df = fill_categories(df)
+    temp1.append(temp_df)
+variable_actions['X3_cat'] = variable_actions['X1_cat'] + ['fill_categories']
+variable_actions['X4_cat'] = variable_actions['X2_cat'] + ['fill_categories']
 
-# for i, df in enumerate(cat_dfs):
-#     X_name = f'X{i + 1}_cat'  # Формируем имя переменной
-#     filename = f'preprocessed/{X_name}.csv'  # Формируем имя файла
-#     df.to_csv(filename, index=False)  # Сохраняем переменную в файл CSV
-#
-# for i, df in enumerate(num_dfs):
-#     X_name = f'X{i + 1}_num'  # Формируем имя переменной
-#     filename = f'preprocessed/{X_name}.csv'  # Формируем имя файла
-#     df.to_csv(filename, index=False)  # Сохраняем переменную в файл CSV
-#
-# y1.to_csv('preprocessed/y1.csv', index=False)
-# y2.to_csv('preprocessed/y2.csv', index=False)
-# pd.Series(variable_actions).to_csv('data_description.csv')
+for i, df in enumerate(num_dfs):
+    temp_df = fill_numeric(df, cat_dfs[i])
+    temp2.append(temp_df)
+variable_actions['X3_num'] = variable_actions['X1_num'] + ['fill_numeric']
+variable_actions['X4_num'] = variable_actions['X2_num'] + ['fill_numeric']
+
+cat_dfs += temp1
+num_dfs += temp2
+temp1.clear()
+temp2.clear()
+# 7, 8
+for df in num_dfs:
+    temp_df = scale_features(df)
+    temp2.append(temp_df)
+variable_actions['X5_num'] = variable_actions['X1_num'] + ['scale_features']
+variable_actions['X6_num'] = variable_actions['X2_num'] + ['scale_features']
+variable_actions['X7_num'] = variable_actions['X3_num'] + ['scale_features']
+variable_actions['X8_num'] = variable_actions['X4_num'] + ['scale_features']
+
+for df in cat_dfs:
+    temp_df = encode_categories(df)
+    temp1.append(temp_df)
+    temp_df = remove_categories(df)
+    temp1.append(temp_df)
+variable_actions['X5_cat'] = variable_actions['X1_cat'] + ['encode_categories']
+variable_actions['X6_cat'] = variable_actions['X1_cat'] + ['remove_categories']
+variable_actions['X7_cat'] = variable_actions['X2_cat'] + ['encode_categories']
+variable_actions['X8_cat'] = variable_actions['X2_cat'] + ['remove_categories']
+variable_actions['X9_cat'] = variable_actions['X3_cat'] + ['encode_categories']
+variable_actions['X10_cat'] = variable_actions['X3_cat'] + ['remove_categories']
+variable_actions['X11_cat'] = variable_actions['X4_cat'] + ['encode_categories']
+variable_actions['X12_cat'] = variable_actions['X4_cat'] + ['remove_categories']
+
+cat_dfs += temp1
+num_dfs += temp2
+temp1.clear()
+temp2.clear()
+
+for i, df in enumerate(cat_dfs):
+    X_name = f'X{i + 1}_cat'  # Формируем имя переменной
+    filename = f'preprocessed/{X_name}.csv'  # Формируем имя файла
+    df.to_csv(filename, index=False)  # Сохраняем переменную в файл CSV
+
+for i, df in enumerate(num_dfs):
+    X_name = f'X{i + 1}_num'  # Формируем имя переменной
+    filename = f'preprocessed/{X_name}.csv'  # Формируем имя файла
+    df.to_csv(filename, index=False)  # Сохраняем переменную в файл CSV
+
+y1.to_csv('preprocessed/y1.csv', index=False)
+y2.to_csv('preprocessed/y2.csv', index=False)
+pd.Series(variable_actions).to_csv('data_description.csv')
